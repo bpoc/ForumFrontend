@@ -1,0 +1,50 @@
+@use "values";
+
+.threads-page{
+
+    padding: 20px;
+
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin: 20px;
+    }
+
+    ul{
+        li{
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 3px 3px gray;
+            padding: 10px;
+            border-radius: 10px;
+            display: grid;
+            grid-template: 1fr 1fr  / 3fr 1fr;
+
+            h2{
+                font-size: 1.5rem;
+                grid-area: 1/1 / 2/2;
+            }
+
+            .author{
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .date{
+                text-align: right;
+                font-size: .8rem;
+            }
+
+            .edit-thread{
+                text-align: right;
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .create-thread{
+        display: block;
+        margin: auto;
+    }
+
+
+}

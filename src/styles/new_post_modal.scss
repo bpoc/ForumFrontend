@@ -1,0 +1,30 @@
+@use "values";
+
+.post-modal {
+    form{
+        >div {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            margin-bottom: 20px;
+            label{
+                margin-bottom: 5px;
+            }
+            .textarea-field{
+                min-width: 90%;
+                textarea{
+                    min-height: 150px;
+                    min-width: 100%;
+                }
+            }
+
+        }
+        button{
+            display: block;
+            margin: auto;
+        }
+    }
+}

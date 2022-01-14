@@ -1,0 +1,49 @@
+.site-footer {
+    background-color: #0c0c0c;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .site-name {
+        font-size: 1.5rem;
+        span {
+            margin-left: 7px;
+        }
+    }
+
+    .social {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+
+        h3{
+            font-size: 1rem;
+        }
+
+        ul {
+            display: flex;
+            width: 100px;
+            justify-content: space-between;
+        }
+    }
+
+    .copy-notice {
+        text-align: center;
+        @media screen and (max-width: 700px) {
+            margin: 10px;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+        height: unset;
+    }
+}

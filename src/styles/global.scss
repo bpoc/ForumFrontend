@@ -1,0 +1,84 @@
+@use "values";
+
+#root {
+    min-height: 100vh;
+    background-color: values.$light-background;
+    font-family: Open Sans;
+    color: values.$font-color-dark;
+}
+
+.site-content {
+    min-height: calc(100vh - 70px);
+}
+
+.site-name {
+    font-family: Righteous;
+}
+
+.container-with-shadow {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px gray;
+    padding: 20px;
+    box-sizing: border-box;
+
+    @media (max-width: 700px) {
+        box-shadow: unset;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    hr {
+        height: 2px;
+        width: 80%;
+        background-color: values.$blue;
+        margin: auto;
+    }
+}
+
+a {
+    cursor: pointer;
+    text-decoration: underline;
+
+    &.dark {
+        color: values.$links-color-dark;
+    }
+
+    &.light {
+        color: values.$links-color-light;
+    }
+}
+
+button {
+    cursor: pointer;
+
+    &.blue {
+        margin: auto;
+        margin-top: 20px;
+        font-size: 1.5rem;
+        border: #333333 solid 1px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: values.$blue;
+        color: values.$light-background;
+        box-shadow: 1px 1px 1px 1px gray;
+
+        &:disabled {
+            filter: saturate(20%);
+        }
+
+        &:not(:disabled):hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}

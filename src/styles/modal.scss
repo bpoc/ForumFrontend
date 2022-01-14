@@ -1,0 +1,78 @@
+@use "values";
+
+.modal-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: values.$grayed-out;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    .modal-foreground {
+        z-index: 20;
+        width: 500px;
+        height: 400px;
+        max-height: 100%;
+        border-radius: 20px;
+        background-color: values.$light-background;
+        padding: 10px 10px 10px 10px;
+        box-shadow: 3px 3px 12px 3px #333333;
+        overflow: scroll;
+        position: relative;
+
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+
+        &::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+
+        .close-modal{
+            position: absolute;
+            top:0px;
+            right:0px;
+            font-size: 2rem;
+        }
+
+        .content{
+            min-height: calc(100% - 65px);
+            h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            hr {
+                height: 2px;
+                width: 80%;
+                background-color: values.$blue;
+                margin: auto;
+            }
+            .message {
+                margin: 20px 10px;
+                font-size: 1.5rem;
+            }
+        }
+
+
+
+        .ok-button {
+            position: relative;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 10px;
+            text-align: center;
+            display: inline-block;
+
+            &:hover{
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+    }
+}

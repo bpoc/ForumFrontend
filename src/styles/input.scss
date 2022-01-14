@@ -1,0 +1,17 @@
+@use "values";
+
+.input-field {
+    input {
+        outline: #333333 solid 1px;
+        border-radius: 5px;
+    }
+
+    input.error {
+        outline: #ff544a solid 2px;
+    }
+
+    .input-error {
+        font-size: 0.8rem;
+        text-align: right;
+    }
+}

@@ -1,0 +1,82 @@
+import React, {FormEvent, useCallback, useMemo, useState} from "react";
+import {Post} from "../models/Models";
+import Modal from "./Modal";
+import TextArea from "./TextArea";
+import "../styles/new_post_modal.scss";
+import API, {APIError} from "../api/API";
+import {useNavigate} from "react-router-dom";
+import NetworkErrorModal from "./NetworkErrorModal";
+
+export type PostModalProps = {
+    onCloseButtonClick: () => void;
+    onPostComplete: ((post: Post) => void) | (() => void);
+    threadId: number;
+    editPost?: Post;
+};
+
+const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: PostModalProps) => {
+    const [text, setText] = useState(editPost?.text ?? "");
+    const [textError, setTextError] = useState("");
+    const [networkError, setNetworkError] = useState<APIError | null>(null);
+    const navigate = useNavigate();
+
+    const onTextBlur = useCallback(() => {
+        if (isDisabled) {
+            setTextError("Must be at least 4 characters");
+        } else {
+            setTextError("");
+        }
+    }, [text, setTextError]);
+
+    const onSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        let response;
+        if (editPost) {
+            response = await API.editPost(editPost.id, text);
+        } else {
+            response = await API.createPost(threadId, text);
+        }
+        if ("isError" in response) {
+            setNetworkError(response);
+            return;
+        }
+        onPostComplete(response);
+    };
+
+    const isDisabled = useMemo(() => {
+        if (text.length < 4) {
+            return true;
+        }
+        return false;
+    }, [text]);
+
+    return (
+        <Modal
+            title={editPost ? "Edit Post" : "Create Post"}
+            showCloseButton={true}
+            onCloseButtonClick={onCloseButtonClick}
+            className="post-modal"
+        >
+            <form className="create-post-container" onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="create_post_textarea">Text</label>
+                    <TextArea
+                        id="create_post_textarea"
+                        value={text}
+                        onChange={(e) => {
+                            setText(e.target.value);
+                        }}
+                        onBlur={onTextBlur}
+                        error={textError}
+                    />
+                </div>
+                <button className="blue" disabled={isDisabled}>
+                    {editPost ? "Update" : "Create"}
+                </button>
+            </form>
+            {networkError && <NetworkErrorModal networkError={networkError} setNetworkError={setNetworkError} />}
+        </Modal>
+    );
+};
+
+export default PostModal;

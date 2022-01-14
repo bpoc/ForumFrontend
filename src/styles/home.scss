@@ -1,0 +1,47 @@
+@use "values";
+
+main.home {
+    section {
+        margin-top: 20px;
+        h2 {
+            font-size: 1.5rem;
+            margin: 15px 0px 5px 0px;
+            text-align: center;
+        }
+        ul {
+            list-style: disc;
+            max-width: 400px;
+            margin: auto;
+            font-size: 1.2rem;
+            list-style: none;
+
+            li {
+                margin-top: 7px;
+                padding-left: 25px;
+                position: relative;
+
+                .icon {
+                    position: absolute;
+                    left: 0px;
+                    top: 5px;
+                }
+            }
+        }
+
+        .topic-link{
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+
+        .links-container {
+            text-align: center;
+
+            a {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+
+}
