@@ -32,15 +32,14 @@
             display: none; /* Safari and Chrome */
         }
 
-
-        .close-modal{
+        .close-modal {
             position: absolute;
-            top:0px;
-            right:0px;
+            top: 0px;
+            right: 0px;
             font-size: 2rem;
         }
 
-        .content{
+        .content {
             min-height: calc(100% - 65px);
             h1 {
                 font-size: 2rem;
@@ -59,8 +58,6 @@
             }
         }
 
-
-
         .ok-button {
             position: relative;
             bottom: 0;
@@ -70,7 +67,7 @@
             text-align: center;
             display: inline-block;
 
-            &:hover{
+            &:hover {
                 transform: translateX(-50%) scale(1.1);
             }
         }

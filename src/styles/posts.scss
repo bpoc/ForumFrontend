@@ -1,6 +1,6 @@
 @use "values";
 
-.posts-page{
+.posts-page {
     padding: 20px;
 
     h1 {
@@ -9,11 +9,11 @@
         margin: 20px;
     }
 
-    >ul{
+    > ul {
         max-width: 800px;
         margin: auto;
 
-        li{
+        li {
             padding: 10px;
             box-shadow: 3px 3px 3px 3px gray;
             border-radius: 10px;
@@ -22,33 +22,31 @@
             grid-row-gap: 10px;
             margin: 20px;
 
-            .poster-info{
+            .poster-info {
                 padding-right: 60px;
                 grid-area: 1/1;
-                h2{
+                h2 {
                     font-size: 1.4rem;
                     display: inline-block;
                     margin-right: 5px;
                 }
-                time{
-                    font-size: .8rem;
+                time {
+                    font-size: 0.8rem;
                 }
             }
 
-            .edit-button{
+            .edit-button {
                 font-size: 1.2rem;
                 grid-area: 1/2;
             }
 
-            p{
+            p {
                 grid-area: 2/1 / 2/2;
             }
-
-
         }
     }
 
-    .create-post{
+    .create-post {
         display: block;
         margin: auto;
     }

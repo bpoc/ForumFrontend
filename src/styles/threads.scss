@@ -1,7 +1,6 @@
 @use "values";
 
-.threads-page{
-
+.threads-page {
     padding: 20px;
 
     h1 {
@@ -10,41 +9,39 @@
         margin: 20px;
     }
 
-    ul{
-        li{
+    ul {
+        li {
             margin-bottom: 20px;
             box-shadow: 3px 3px 3px 3px gray;
             padding: 10px;
             border-radius: 10px;
             display: grid;
-            grid-template: 1fr 1fr  / 3fr 1fr;
+            grid-template: 1fr 1fr / 3fr 1fr;
 
-            h2{
+            h2 {
                 font-size: 1.5rem;
                 grid-area: 1/1 / 2/2;
             }
 
-            .author{
+            .author {
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
 
-            .date{
+            .date {
                 text-align: right;
-                font-size: .8rem;
+                font-size: 0.8rem;
             }
 
-            .edit-thread{
+            .edit-thread {
                 text-align: right;
                 font-size: 1.2rem;
             }
         }
     }
 
-    .create-thread{
+    .create-thread {
         display: block;
         margin: auto;
     }
-
-
 }

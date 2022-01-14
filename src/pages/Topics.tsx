@@ -7,7 +7,6 @@ import {DateTime} from "luxon";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import TopicModal from "../components/TopicModal";
 import "../styles/topics.scss";
-import Modal from "../components/Modal";
 import NetworkErrorModal from "../components/NetworkErrorModal";
 
 const Topics = () => {

@@ -1,14 +1,14 @@
 @use "values";
 
-.topics-page{
+.topics-page {
     padding: 20px;
     h1 {
         font-size: 2rem;
         text-align: center;
     }
 
-    .topics-list{
-        li{
+    .topics-list {
+        li {
             box-shadow: 2px 2px 2px 2px gray;
             margin: 20px;
             padding: 10px;
@@ -17,18 +17,16 @@
             grid-template-columns: 2fr 2fr 1fr 2fr;
             grid-template-rows: repeat(3, 1fr);
 
-
-
-            h2{
+            h2 {
                 font-size: 1.8rem;
                 grid-area: 1/1 / 2/4;
             }
-            p{
+            p {
                 font-size: 1.2rem;
                 grid-area: 2/1 / 4/3;
             }
 
-            .author{
+            .author {
                 grid-row: 2/4;
                 grid-column: 4;
                 display: flex;
@@ -36,7 +34,7 @@
                 justify-content: flex-end;
                 align-items: flex-end;
                 overflow: hidden;
-                span{
+                span {
                     display: block;
                     text-align: right;
                     max-width: 100%;
@@ -46,11 +44,11 @@
             }
 
             .date {
-                font-size: .8rem;
+                font-size: 0.8rem;
                 text-align: right;
             }
 
-            button{
+            button {
                 grid-row: 1;
                 grid-column: 4;
                 justify-self: right;
@@ -61,36 +59,36 @@
                 grid-template-rows: 1fr 1fr 1fr;
                 grid-row-gap: 10px;
 
-                h2{
+                h2 {
                     grid-area: 1/1 / 2/4;
                     text-align: center;
                 }
-                p{
+                p {
                     font-size: 1.2rem;
                     grid-area: 2/1 / 3/4;
                 }
 
-                .author{
+                .author {
                     grid-area: 3/1 / 3/3;
                     justify-content: start;
                     align-items: start;
-                    span{
+                    span {
                         text-align: left;
                     }
                 }
 
-                button{
+                button {
                     grid-area: 3/3;
                 }
             }
         }
     }
 
-    .new-topic{
+    .new-topic {
         text-align: center;
         margin: auto;
         display: block;
-        span{
+        span {
             margin: 5px;
             text-align: center;
         }

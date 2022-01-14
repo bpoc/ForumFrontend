@@ -7,7 +7,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../styles/threads.scss";
 import {UserProvider} from "../contexts/UserProvider";
 import ThreadModal from "../components/ThreadModal";
-import Modal from "../components/Modal";
 import NetworkErrorModal from "../components/NetworkErrorModal";
 
 const Threads = () => {

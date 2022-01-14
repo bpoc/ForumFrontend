@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import TextArea from "./TextArea";
 import "../styles/new_post_modal.scss";
 import API, {APIError} from "../api/API";
-import {useNavigate} from "react-router-dom";
 import NetworkErrorModal from "./NetworkErrorModal";
 
 export type PostModalProps = {
@@ -18,7 +17,6 @@ const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: Pos
     const [text, setText] = useState(editPost?.text ?? "");
     const [textError, setTextError] = useState("");
     const [networkError, setNetworkError] = useState<APIError | null>(null);
-    const navigate = useNavigate();
 
     const onTextBlur = useCallback(() => {
         if (isDisabled) {

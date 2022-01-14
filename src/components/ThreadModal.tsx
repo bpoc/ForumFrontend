@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import Input from "./Input";
 import "../styles/new_thread_modal.scss";
 import API, {APIError} from "../api/API";
-import {useNavigate} from "react-router-dom";
 import NetworkErrorModal from "./NetworkErrorModal";
 
 export type ThreadModalProps = {
@@ -18,7 +17,6 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
     const [name, setName] = useState(editThread?.name ?? "");
     const [nameError, setNameError] = useState("");
     const [networkError, setNetworkError] = useState<APIError | null>(null);
-    const navigate = useNavigate();
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -41,13 +39,6 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
         } else if (nameError) {
             setNameError("");
         }
-    };
-
-    const networkErrorClosed = () => {
-        if (networkError?.code === 401) {
-            navigate("/login");
-        }
-        setNetworkError(null);
     };
 
     const isDisabled = useMemo(() => {

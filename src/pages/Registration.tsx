@@ -2,7 +2,6 @@ import React, {FormEvent, useState, FocusEvent, useMemo} from "react";
 import "../styles/registration.scss";
 import Input from "../components/Input";
 import API, {APIError} from "../api/API";
-import Modal from "../components/Modal";
 import {Link, useNavigate} from "react-router-dom";
 import NetworkErrorModal from "../components/NetworkErrorModal";
 

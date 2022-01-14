@@ -1,6 +1,5 @@
 import React, {useCallback, useState, FocusEvent, useContext, useMemo, FormEvent} from "react";
 import Input from "../components/Input";
-import Modal from "../components/Modal";
 import API, {APIError, setCurrentUserInfoToLocalStorage} from "../api/API";
 import {UserProvider} from "../contexts/UserProvider";
 import {Link, useNavigate} from "react-router-dom";

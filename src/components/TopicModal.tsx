@@ -5,7 +5,6 @@ import "../styles/new_topic_modal.scss";
 import TextArea from "./TextArea";
 import API, {APIError} from "../api/API";
 import {Topic} from "../models/Models";
-import {useNavigate} from "react-router-dom";
 import NetworkErrorModal from "./NetworkErrorModal";
 
 type TopicModalProps = {
@@ -20,7 +19,6 @@ const TopicModal = ({onCloseButtonClick, onTopicComplete, editTopic}: TopicModal
     const [nameError, setNameError] = useState("");
     const [descriptionError, setDescriptionError] = useState("");
     const [networkError, setNetworkError] = useState<APIError | null>(null);
-    const navigate = useNavigate();
 
     const submitForm = async (e: FormEvent) => {
         e.preventDefault();
