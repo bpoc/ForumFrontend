@@ -6,12 +6,12 @@
     top: 0;
     left: 0;
     bottom: 0;
+    padding: 20px;
     background-color: values.$grayed-out;
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
 
     .modal-foreground {
         z-index: 20;
@@ -44,6 +44,8 @@
             h1 {
                 font-size: 2rem;
                 text-align: center;
+                padding-left: 32px;
+                padding-right: 32px;
             }
 
             hr {
@@ -51,7 +53,9 @@
                 width: 80%;
                 background-color: values.$blue;
                 margin: auto;
+
             }
+
             .message {
                 margin: 20px 10px;
                 font-size: 1.5rem;

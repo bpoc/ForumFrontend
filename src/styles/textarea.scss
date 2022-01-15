@@ -4,6 +4,11 @@
     textarea {
         outline: #333333 solid 1px;
         border-radius: 5px;
+        max-width: 100%;
+
+        @media (max-width: 450px) {
+            font-size: 1rem;
+        }
     }
 
     textarea.error {

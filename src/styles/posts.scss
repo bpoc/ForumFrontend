@@ -18,30 +18,40 @@
             box-shadow: 3px 3px 3px 3px gray;
             border-radius: 10px;
             display: grid;
-            grid-template: 1fr auto / auto 60px;
+            grid-template: auto auto 60px / calc(100% - 60px) 60px;
             grid-row-gap: 10px;
             margin: 20px;
 
             .poster-info {
-                padding-right: 60px;
-                grid-area: 1/1;
+                grid-area: 1/1 / 1/3;
                 h2 {
                     font-size: 1.4rem;
                     display: inline-block;
-                    margin-right: 5px;
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow:  ellipsis;
                 }
                 time {
                     font-size: 0.8rem;
+                    text-wrap: none;
+                    margin-left: 5px;
+                    white-space: nowrap;
                 }
             }
 
             .edit-button {
                 font-size: 1.2rem;
-                grid-area: 1/2;
+                grid-area: 3/2;
             }
 
             p {
-                grid-area: 2/1 / 2/2;
+                grid-area: 2/1 / 2/3;
+            }
+            
+            @media (max-width: 550px) {
+                h2{
+                    font-size: 1.2rem;
+                }
             }
         }
     }

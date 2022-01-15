@@ -14,10 +14,18 @@
             label {
                 margin-bottom: 5px;
             }
+
+            input{
+                max-width: 100%;
+            }
         }
     }
     button {
         display: block;
         margin: auto;
+    }
+
+    @media (max-width: 450px) {
+        padding: 0px;
     }
 }

@@ -1,6 +1,7 @@
 @use "values";
 
 .input-field {
+    max-width: 95%;
     input {
         outline: #333333 solid 1px;
         border-radius: 5px;
