@@ -29,7 +29,7 @@
                     display: inline-block;
                     max-width: 100%;
                     overflow: hidden;
-                    text-overflow:  ellipsis;
+                    text-overflow: ellipsis;
                 }
                 time {
                     font-size: 0.8rem;
@@ -47,9 +47,9 @@
             p {
                 grid-area: 2/1 / 2/3;
             }
-            
+
             @media (max-width: 550px) {
-                h2{
+                h2 {
                     font-size: 1.2rem;
                 }
             }
