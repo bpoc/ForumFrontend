@@ -43,6 +43,7 @@ const validateEmail = (email: string) => {
     return false;
 };
 
+//eslint-disable-next-line
 const convertTimeToCamelCase = (json: any) => {
     if (Array.isArray(json)) {
         json.map((childJson) => convertTimeToCamelCase(childJson));

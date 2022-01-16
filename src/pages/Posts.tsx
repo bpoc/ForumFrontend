@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Post, Thread} from "../models/Models";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import API, {APIError} from "../api/API";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../styles/posts.scss";

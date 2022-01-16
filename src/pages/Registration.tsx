@@ -18,7 +18,7 @@ const Registration = () => {
     const submitForm = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const response = await API.register(email, password);
+            await API.register(email, password);
             navigate("/login");
         } catch (e) {
             setNetworkError(e as APIError);
