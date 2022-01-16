@@ -17,11 +17,11 @@ const Registration = () => {
 
     const submitForm = async (e: FormEvent) => {
         e.preventDefault();
-        const response = await API.register(email, password);
-        if ("isError" in response) {
-            setNetworkError(response);
-        } else {
+        try {
+            const response = await API.register(email, password);
             navigate("/login");
+        } catch (e) {
+            setNetworkError(e as APIError);
         }
     };
 

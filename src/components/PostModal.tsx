@@ -35,17 +35,17 @@ const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: Pos
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        let response;
-        if (editPost) {
-            response = await API.editPost(editPost.id, text);
-        } else {
-            response = await API.createPost(threadId, text);
+        try {
+            let response;
+            if (editPost) {
+                response = await API.editPost(editPost.id, text);
+            } else {
+                response = await API.createPost(threadId, text);
+            }
+            onPostComplete(response);
+        } catch (e) {
+            setNetworkError(e as APIError);
         }
-        if ("isError" in response) {
-            setNetworkError(response);
-            return;
-        }
-        onPostComplete(response);
     };
 
     return (

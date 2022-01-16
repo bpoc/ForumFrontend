@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Post, Thread} from "../models/Models";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import API, {APIError} from "../api/API";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../styles/posts.scss";
@@ -17,15 +17,20 @@ const Posts = () => {
     const [showCreatePostModal, setShowCreatePostModal] = useState(false);
     const [editPost, setEditPost] = useState<Post | null>(null);
     const {threadId} = useParams();
+    const navigate = useNavigate();
 
     const getThread = useCallback(() => {
-        API.getThread(parseInt(threadId ?? "-1")).then((response) => {
-            if ("isError" in response) {
-                setNetworkError(response);
-                return;
-            }
-            setThread(response);
-        });
+        API.getThread(parseInt(threadId ?? "-1"))
+            .then((response) => {
+                setThread(response);
+            })
+            .catch((e) => {
+                if ((e as APIError).code === 404) {
+                    navigate("/404");
+                    return;
+                }
+                setNetworkError(e as APIError);
+            });
     }, [threadId]);
 
     useEffect(() => {

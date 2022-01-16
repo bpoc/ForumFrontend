@@ -28,13 +28,13 @@ const Login = () => {
     const submitForm = useCallback(
         async (e: FormEvent) => {
             e.preventDefault();
-            const result = await API.login(email, password);
-            if ("isError" in result) {
-                setNetworkError(result);
-            } else {
+            try {
+                const result = await API.login(email, password);
                 setCurrentUserInfoToLocalStorage(result);
                 setCurrentUserInfo?.(result);
                 navigate("/topics");
+            } catch (e) {
+                setNetworkError(e as APIError);
             }
         },
         [email, navigate, password, setCurrentUserInfo]

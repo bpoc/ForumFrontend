@@ -20,17 +20,17 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        let response;
-        if (editThread) {
-            response = await API.editThread(editThread.id, name);
-        } else {
-            response = await API.createThread(topicId, name);
+        try {
+            let response;
+            if (editThread) {
+                response = await API.editThread(editThread.id, name);
+            } else {
+                response = await API.createThread(topicId, name);
+            }
+            onThreadComplete(response);
+        } catch (e) {
+            setNetworkError(e as APIError);
         }
-        if ("isError" in response) {
-            setNetworkError(response);
-            return;
-        }
-        onThreadComplete(response);
     };
 
     const onNameBlur = () => {

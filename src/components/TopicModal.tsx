@@ -22,16 +22,16 @@ const TopicModal = ({onCloseButtonClick, onTopicComplete, editTopic}: TopicModal
 
     const submitForm = async (e: FormEvent) => {
         e.preventDefault();
-        let response;
-        if (editTopic) {
-            response = await API.editTopic(editTopic.id, name, description);
-        } else {
-            response = await API.createTopic(name, description);
-        }
-        if ("isError" in response) {
-            setNetworkError(response);
-        } else {
+        try {
+            let response;
+            if (editTopic) {
+                response = await API.editTopic(editTopic.id, name, description);
+            } else {
+                response = await API.createTopic(name, description);
+            }
             onTopicComplete(response);
+        } catch (e) {
+            setNetworkError(e as APIError);
         }
     };
 

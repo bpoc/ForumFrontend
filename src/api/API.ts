@@ -43,7 +43,22 @@ const validateEmail = (email: string) => {
     return false;
 };
 
-const register = async (email: string, password: string): Promise<User | APIError> => {
+const convertTimeToCamelCase = (json: any) => {
+    if (Array.isArray(json)) {
+        json.map((childJson) => convertTimeToCamelCase(childJson));
+    }
+    for (const key in json) {
+        if (Array.isArray(json[key])) {
+            convertTimeToCamelCase(json[key]);
+        } else if (key === "created_at") {
+            json.createdAt = json[key];
+        } else if (key === "updated_at") {
+            json.updatedAt = json[key];
+        }
+    }
+};
+
+const register = async (email: string, password: string): Promise<User> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
         method: "POST",
         headers: {
@@ -51,19 +66,18 @@ const register = async (email: string, password: string): Promise<User | APIErro
         },
         body: JSON.stringify({email, password}),
     });
-    if (response.ok) {
-        return (await response.json()) as User;
-    } else {
-        return {
+    if (!response.ok) {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
             message: response.statusText,
         } as APIError;
     }
+    return (await response.json()) as User;
 };
 
-const login = async (email: string, password: string): Promise<CurrentUserInfo | APIError> => {
+const login = async (email: string, password: string): Promise<CurrentUserInfo> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
         method: "POST",
         headers: {
@@ -72,22 +86,21 @@ const login = async (email: string, password: string): Promise<CurrentUserInfo |
         body: JSON.stringify({email, password}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
             message: response.status === 400 ? "Invalid Username and Password" : response.statusText,
         } as APIError;
-    } else {
-        const result = await response.json();
-        return {
-            token: {token: result.token.token, expiration: result.token.expires_at},
-            user: result.user,
-        } as CurrentUserInfo;
     }
+    const result = await response.json();
+    return {
+        token: {token: result.token.token, expiration: result.token.expires_at},
+        user: result.user,
+    } as CurrentUserInfo;
 };
 
-const getTopics = async (): Promise<Topic[] | APIError> => {
+const getTopics = async (): Promise<Topic[]> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/topics`, {
         method: "GET",
         headers: {
@@ -96,7 +109,7 @@ const getTopics = async (): Promise<Topic[] | APIError> => {
         },
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -105,18 +118,11 @@ const getTopics = async (): Promise<Topic[] | APIError> => {
         } as APIError;
     }
     const results = await response.json();
-    //eslint-disable-next-line
-    const topicArray: Topic[] = results.map((topic: any) => {
-        return {
-            ...topic,
-            createdAt: topic.created_at,
-            updatedAt: topic.updated_at,
-        } as Topic;
-    });
-    return topicArray;
+    convertTimeToCamelCase(results);
+    return results as Topic[];
 };
 
-const createTopic = async (name: string, description: string): Promise<Topic | APIError> => {
+const createTopic = async (name: string, description: string): Promise<Topic> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/topics`, {
         method: "POST",
         headers: {
@@ -126,7 +132,7 @@ const createTopic = async (name: string, description: string): Promise<Topic | A
         body: JSON.stringify({name, description}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -139,10 +145,11 @@ const createTopic = async (name: string, description: string): Promise<Topic | A
         } as APIError;
     }
     const result = await response.json();
-    return {...result, createdAt: result.created_at, updatedAt: result.updated_at} as Topic;
+    convertTimeToCamelCase(result);
+    return result as Topic;
 };
 
-const editTopic = async (topicId: number, name: string, description: string): Promise<Topic | APIError> => {
+const editTopic = async (topicId: number, name: string, description: string): Promise<Topic> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/topics/${topicId}`, {
         method: "PUT",
         headers: {
@@ -152,7 +159,7 @@ const editTopic = async (topicId: number, name: string, description: string): Pr
         body: JSON.stringify({name, description}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -160,14 +167,11 @@ const editTopic = async (topicId: number, name: string, description: string): Pr
         } as APIError;
     }
     const result = await response.json();
-    return {
-        ...result,
-        createdAt: result.created_at,
-        updatedAt: result.updated_at,
-    } as Topic;
+    convertTimeToCamelCase(result);
+    return result;
 };
 
-const getTopic = async (topicId: number): Promise<Topic | APIError> => {
+const getTopic = async (topicId: number): Promise<Topic> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/topics/${topicId}`, {
         method: "GET",
         headers: {
@@ -176,7 +180,7 @@ const getTopic = async (topicId: number): Promise<Topic | APIError> => {
         },
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -184,19 +188,11 @@ const getTopic = async (topicId: number): Promise<Topic | APIError> => {
         } as APIError;
     }
     const results = await response.json();
-    results.createdAt = results.created_at;
-    results.updatedAt = results.updated_at;
-    results.user.createdAt = results.user.created_at;
-    results.user.updatedAt = results.user.updated_at;
-    //eslint-disable-next-line
-    results.threads.map((t: any) => {
-        t.createdAt = t.created_at;
-        t.updatedAt = t.updated_at;
-    });
+    convertTimeToCamelCase(results);
     return results as Topic;
 };
 
-const createThread = async (topicId: number, name: string): Promise<Thread | APIError> => {
+const createThread = async (topicId: number, name: string): Promise<Thread> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/threads`, {
         method: "POST",
         headers: {
@@ -206,7 +202,7 @@ const createThread = async (topicId: number, name: string): Promise<Thread | API
         body: JSON.stringify({topicId, name}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -214,10 +210,11 @@ const createThread = async (topicId: number, name: string): Promise<Thread | API
         } as APIError;
     }
     const result = await response.json();
-    return {...result, createdAt: result.created_at, updatedAt: result.updated_at} as Thread;
+    convertTimeToCamelCase(result);
+    return result as Thread;
 };
 
-const editThread = async (threadId: number, name: string): Promise<Thread | APIError> => {
+const editThread = async (threadId: number, name: string): Promise<Thread> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/threads/${threadId}`, {
         method: "PUT",
         headers: {
@@ -227,7 +224,7 @@ const editThread = async (threadId: number, name: string): Promise<Thread | APIE
         body: JSON.stringify({threadId, name}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -235,10 +232,11 @@ const editThread = async (threadId: number, name: string): Promise<Thread | APIE
         } as APIError;
     }
     const results = await response.json();
-    return {...results, createdAt: results.created_at, updatedAt: results.updated_at} as Thread;
+    convertTimeToCamelCase(results);
+    return results as Thread;
 };
 
-const getThread = async (threadId: number): Promise<Thread | APIError> => {
+const getThread = async (threadId: number): Promise<Thread> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/threads/${threadId}`, {
         method: "GET",
         headers: {
@@ -247,7 +245,7 @@ const getThread = async (threadId: number): Promise<Thread | APIError> => {
         },
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -255,23 +253,11 @@ const getThread = async (threadId: number): Promise<Thread | APIError> => {
         } as APIError;
     }
     const results = await response.json();
-    results.createdAt = results.created_at;
-    results.updatedAt = results.updated_at;
-    results.topic.createdAt = results.topic.created_at;
-    results.topic.updatedAt = results.topic.updated_at;
-    results.user.createdAt = results.user.created_at;
-    results.user.updatedAt = results.user.updated_at;
-    //eslint-disable-next-line
-    results.posts.map((post: any) => {
-        post.createdAt = post.created_at;
-        post.updatedAt = post.updated_at;
-        post.user.createdAt = post.user.created_at;
-        post.user.updatedAt = post.user.updated_at;
-    });
+    convertTimeToCamelCase(results);
     return results as Thread;
 };
 
-const createPost = async (threadId: number, text: string): Promise<Post | APIError> => {
+const createPost = async (threadId: number, text: string): Promise<Post> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         method: "POST",
         headers: {
@@ -281,7 +267,7 @@ const createPost = async (threadId: number, text: string): Promise<Post | APIErr
         body: JSON.stringify({threadId, text}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -289,14 +275,11 @@ const createPost = async (threadId: number, text: string): Promise<Post | APIErr
         } as APIError;
     }
     const result = await response.json();
-    result.createdAt = result.created_at;
-    result.updatedAt = result.updated_at;
-    result.user.createdAt = result.user.created_at;
-    result.user.updatedAt = result.user.updated_at;
+    convertTimeToCamelCase(result);
     return result as Post;
 };
 
-const editPost = async (postId: number, text: string): Promise<Post | APIError> => {
+const editPost = async (postId: number, text: string): Promise<Post> => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${postId}`, {
         method: "PUT",
         headers: {
@@ -306,7 +289,7 @@ const editPost = async (postId: number, text: string): Promise<Post | APIError> 
         body: JSON.stringify({text}),
     });
     if (!response.ok) {
-        return {
+        throw {
             isError: true,
             code: response.status,
             codeText: response.statusText,
@@ -314,8 +297,7 @@ const editPost = async (postId: number, text: string): Promise<Post | APIError> 
         } as APIError;
     }
     const result = await response.json();
-    result.createdAt = result.created_at;
-    result.updatedAt = result.updated_at;
+    convertTimeToCamelCase(result);
     return result as Post;
 };
 

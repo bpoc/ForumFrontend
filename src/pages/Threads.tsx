@@ -20,21 +20,20 @@ const Threads = () => {
     const navigate = useNavigate();
 
     const getTopic = useCallback(() => {
-        API.getTopic(parseInt(topicId ?? "-1")).then((response) => {
-            if ("isError" in response) {
-                if (response.code === 404) {
+        API.getTopic(parseInt(topicId ?? "-1"))
+            .then((response) => {
+                setTopic(response);
+            })
+            .catch((e) => {
+                if (e.code === 404) {
                     navigate("/404");
                     return;
                 }
-                setNetworkError(response);
-                return;
-            }
-            setTopic(response);
-        });
+                setNetworkError(e as APIError);
+            });
     }, [navigate, topicId]);
 
     const onThreadComplete = useCallback(() => {
-        //eslint-disable-next-line
         getTopic();
         setShowCreateThread(false);
         setShowEditThread(null);

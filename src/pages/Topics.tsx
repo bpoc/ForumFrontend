@@ -19,17 +19,17 @@ const Topics = () => {
     const navigate = useNavigate();
 
     const fetchTopics = useCallback(() => {
-        API.getTopics().then((response) => {
-            if ("isError" in response) {
-                if (response.code === 401) {
+        API.getTopics()
+            .then((response) => {
+                setTopics(response);
+            })
+            .catch((e) => {
+                if (e.code === 401) {
                     navigate("/login");
                     return;
                 }
-                setNetworkError(response);
-            } else {
-                setTopics(response);
-            }
-        });
+                setNetworkError(e);
+            });
     }, [navigate]);
 
     const onEditTopicComplete = useCallback(
