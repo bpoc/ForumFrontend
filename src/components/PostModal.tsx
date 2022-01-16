@@ -27,7 +27,7 @@ const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: Pos
 
     const onTextBlur = useCallback(() => {
         if (isDisabled) {
-            setTextError("Must be at least 4 characters");
+            setTextError("Must be at least 5 characters");
         } else {
             setTextError("");
         }

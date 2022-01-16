@@ -35,14 +35,14 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
 
     const onNameBlur = () => {
         if (isDisabled) {
-            setNameError("must be at least 4 characters");
+            setNameError("must be at least 5 characters");
         } else if (nameError) {
             setNameError("");
         }
     };
 
     const isDisabled = useMemo(() => {
-        if (name.length < 4) return true;
+        if (name.length < 5) return true;
         return false;
     }, [name]);
 

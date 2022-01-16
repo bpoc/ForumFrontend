@@ -36,8 +36,8 @@ const TopicModal = ({onCloseButtonClick, onTopicComplete, editTopic}: TopicModal
     };
 
     const isDisabled = useMemo(() => {
-        if (name.length < 4) return true;
-        if (description.length < 4) return true;
+        if (name.length < 5) return true;
+        if (description.length < 5) return true;
         return false;
     }, [name, description]);
 
@@ -59,8 +59,8 @@ const TopicModal = ({onCloseButtonClick, onTopicComplete, editTopic}: TopicModal
                     }}
                     error={nameError}
                     onBlur={() => {
-                        if (name.length < 4) {
-                            setNameError("Must be at least 4 characters");
+                        if (name.length < 5) {
+                            setNameError("Must be at least 5 characters");
                         } else {
                             setNameError("");
                         }
@@ -75,8 +75,8 @@ const TopicModal = ({onCloseButtonClick, onTopicComplete, editTopic}: TopicModal
                     }}
                     error={descriptionError}
                     onBlur={() => {
-                        if (description.length < 4) {
-                            setDescriptionError("Must be at least 4 characters");
+                        if (description.length < 5) {
+                            setDescriptionError("Must be at least 5 characters");
                         } else {
                             setDescriptionError("");
                         }
