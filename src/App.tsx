@@ -3,7 +3,7 @@ import "the-new-css-reset/css/reset.css";
 import "./styles/global.scss";
 import {CurrentUserInfo} from "./models/Models";
 import {UserProvider} from "./contexts/UserProvider";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import {getCurrentUserInfoFromLocalStorage} from "./api/API";
 import Home from "./pages/Home";
 import Header from "./components/Header";
@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Topics from "./pages/Topics";
 import Threads from "./pages/Threads";
 import Posts from "./pages/Posts";
+import NotFound from "./pages/NotFound";
 import {
     faLaptopCode,
     faBars,
@@ -50,12 +51,14 @@ function App() {
                     <div className={"site-content"}>
                         <Header />
                         <Routes>
+                            <Route path="*" element={<Navigate to={"/404"} />} />
                             <Route path="/" element={<Home />} />
                             <Route path="/register" element={<Registration />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="topics" element={<Topics />} />
                             <Route path="/topics/:topicId" element={<Threads />} />
                             <Route path="/threads/:threadId" element={<Posts />} />
+                            <Route path="/404" element={<NotFound />} />
                         </Routes>
                     </div>
                     <Footer />

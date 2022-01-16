@@ -1,0 +1,16 @@
+@use "values";
+
+.not-found{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1{
+    color: values.$blue;
+    font-size: 3rem;
+  }
+  div{
+    font-size: 1.5rem;
+  }
+}
