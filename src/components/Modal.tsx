@@ -57,11 +57,9 @@ class Modal extends React.Component {
         this.setState({parent: newParent});
         document.body.classList.add("no-scroll");
         document.body.append(newParent);
-        console.log("will mount");
     }
 
     componentWillUnmount() {
-        console.log("unmount");
         if (this.state.parent) {
             document.body.removeChild(this.state.parent);
         }

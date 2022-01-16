@@ -42,7 +42,6 @@ const Topics = () => {
     );
 
     useEffect(() => {
-        console.log("topics", currentUserInfo);
         if (currentUserInfo == null) {
             navigate("/login");
             return;
@@ -56,7 +55,6 @@ const Topics = () => {
             <h1>Forum Topics</h1>
             <ul className="topics-list">
                 {topics.map((topic) => {
-                    console.log(DateTime.fromISO(topic.createdAt));
                     return (
                         <li key={topic.id}>
                             <h2>

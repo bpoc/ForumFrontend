@@ -27,7 +27,6 @@ const Header = () => {
     };
 
     const closeMobileNav = useCallback(() => {
-        console.log("here");
         setIsMobileNavClosing(true);
         setTimeout(() => {
             setIsMobileNavOpen(false);

@@ -54,7 +54,6 @@ const register = async (email: string, password: string): Promise<User | APIErro
     if (response.ok) {
         return (await response.json()) as User;
     } else {
-        console.log(response.statusText);
         return {
             isError: true,
             code: response.status,
