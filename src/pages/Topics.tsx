@@ -64,7 +64,7 @@ const Topics = () => {
                             </h2>
                             <p>{topic.description}</p>
                             <div className="author">
-                                <span className="label">created by</span>{" "}
+                                <span className="label">created by</span>
                                 <span className="author-email">{topic.user.email}</span>
                                 <span className="date">
                                     ({DateTime.fromISO(topic.createdAt).toFormat("MMM d, yy")})

@@ -84,7 +84,7 @@ const Login = () => {
                 </button>
             </form>
             <div className="register-here">
-                Don't have an account?{" "}
+                Don't have an account?
                 <Link to="/register" className="dark">
                     Register here.
                 </Link>

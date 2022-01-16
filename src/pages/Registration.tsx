@@ -105,7 +105,7 @@ const Registration = () => {
                 </button>
             </form>
             <div className="register-here">
-                Already have an account?{" "}
+                Already have an account?
                 <Link to="/login" className="dark">
                     Login here.
                 </Link>

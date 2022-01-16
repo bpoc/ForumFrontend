@@ -44,8 +44,8 @@ const Home = () => {
                         <div className="links-container">
                             <Link className={"dark"} to="/login">
                                 Login
-                            </Link>{" "}
-                            or{" "}
+                            </Link>
+                            or
                             <Link className={"dark"} to={"/register"}>
                                 Register
                             </Link>
