@@ -1,10 +1,10 @@
-# Forum Frontend with React 
+# Forum Frontend with React
 
 We're going to use React with typescript to build our forum frontend.
 
-#Setup 
+#Setup
 
-## Install nvm 
+## Install nvm
 
 If you haven't already make sure you have nvm installed.
 
@@ -16,7 +16,7 @@ Open up the terminal and cd to the folder you keep your projects in.
 
 ## Create the Project
 
-In the same terminal window run 
+In the same terminal window run
 
     npx create-react-app ./forum_frontend --template typescript
 
@@ -26,13 +26,12 @@ Now you can open the project up in your IDE of choice.
 
 If you're using a Jetbrains IDE(Phpstorm, Webstorm, IntelliJ) you
 should install the Prettier plugin from Jetbrains. Once you do that
-go into preferences (command+,). 
-Then go to Languages and Frameworks > 
-JavaScript > Prettier and turn on "On Reformat Code" Option. 
+go into preferences (command+,).
+Then go to Languages and Frameworks >
+JavaScript > Prettier and turn on "On Reformat Code" Option.
 
 Once we have Prettier setup code formatting will follow the rules
 we set.
-
 
 ## Install eslint
 
@@ -42,16 +41,15 @@ Run
 
 ## Install Prettier
 
-Prettier will help auto format code. Install it using 
+Prettier will help auto format code. Install it using
 
     npm install --save-dev --save-exact prettier
-    
+
     echo {}> .prettierrc.json
 
-    
 ## Update Prettier Config
 
-Open up .prettierrc.json file 
+Open up .prettierrc.json file
 
     {
         "trailingComma": "es5",
@@ -64,6 +62,7 @@ Open up .prettierrc.json file
     }
 
 ## Create Prettier Ignore File
+
     create a file called .prettierignore
 
 now add these to it
@@ -77,7 +76,6 @@ now add these to it
     npm install --save-dev eslint-config-prettier
 
     npm install --save-dev eslint-plugin-prettier
-
 
 ## Create ESLint Ignore File
 
@@ -125,7 +123,7 @@ You can run this whenever you want to format project files
 
     npm i the-new-css-reset
 
-Then inside of App.tsx import 
+Then inside of App.tsx import
 
     import "the-new-css-reset/css/reset.css"
 
@@ -142,7 +140,7 @@ Add these to the compilerOptions section
 ## Install FontAwesome
 
 If you have your own icons or just don't want to use
-icons then this step is not necessary. 
+icons then this step is not necessary.
 
     npm i --save @fortawesome/fontawesome-svg-core
     npm install --save @fortawesome/free-solid-svg-icons
@@ -164,10 +162,3 @@ it can be a helpful library
 If you want to try some different fonts go to https://fonts.google.com/
 
 You can paste the link code it gives you into the public/index.html file
-
-
-
-
-
-
-

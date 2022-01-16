@@ -65,7 +65,7 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
                     {editThread ? "Update" : "Create"}
                 </button>
             </form>
-            {networkError && <NetworkErrorModal networkError={networkError} setNetworkError={setNetworkError}/>}
+            {networkError && <NetworkErrorModal networkError={networkError} setNetworkError={setNetworkError} />}
         </Modal>
     );
 };
