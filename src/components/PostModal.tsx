@@ -51,7 +51,6 @@ const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: Pos
     return (
         <Modal
             title={editPost ? "Edit Post" : "Create Post"}
-            showCloseButton={true}
             onCloseButtonClick={onCloseButtonClick}
             className="post-modal"
         >

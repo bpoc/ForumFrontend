@@ -47,11 +47,7 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
     }, [name]);
 
     return (
-        <Modal
-            title={editThread ? "Edit Thread" : "Create Thread"}
-            onCloseButtonClick={onCloseButtonClick}
-            showCloseButton={true}
-        >
+        <Modal title={editThread ? "Edit Thread" : "Create Thread"} onCloseButtonClick={onCloseButtonClick}>
             <form className="edit-thread-container" onSubmit={onSubmit}>
                 <div className="label-input-container">
                     <label htmlFor="edit_thread_name">Name</label>
@@ -69,7 +65,7 @@ const ThreadModal = ({onCloseButtonClick, onThreadComplete, editThread, topicId}
                     {editThread ? "Update" : "Create"}
                 </button>
             </form>
-            {networkError && <NetworkErrorModal networkError={networkError} setNetworkError={setNetworkError} />}
+            {networkError && <NetworkErrorModal networkError={networkError} setNetworkError={setNetworkError}/>}
         </Modal>
     );
 };

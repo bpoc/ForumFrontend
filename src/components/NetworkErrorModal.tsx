@@ -13,7 +13,6 @@ const NetworkErrorModal = ({networkError, setNetworkError}: NetworkErrorModalPro
     return (
         <Modal
             title="Network Error"
-            showOkButton={true}
             onOkButtonClick={() => {
                 if (networkError.code === 401) {
                     navigate("/login");

@@ -43,7 +43,6 @@ const TopicModal = ({onCloseButtonClick, onTopicComplete, editTopic}: TopicModal
 
     return (
         <Modal
-            showCloseButton={true}
             title={editTopic ? "Edit Topic" : "New Topic"}
             className="new-topic"
             onCloseButtonClick={onCloseButtonClick}

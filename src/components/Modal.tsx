@@ -5,25 +5,15 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export type ModalProps = {
     children: React.ReactNode;
-    showOkButton?: boolean;
     title: string;
     onOkButtonClick?: () => void;
     onCloseButtonClick?: () => void;
-    showCloseButton?: boolean;
     className?: string;
 };
 
-const ModalForeground = ({
-    children,
-    showOkButton,
-    title,
-    onOkButtonClick,
-    showCloseButton,
-    className,
-    onCloseButtonClick,
-}: ModalProps) => {
-    showCloseButton = showCloseButton ?? false;
-    showOkButton = showOkButton ?? false;
+const ModalForeground = ({children, title, onOkButtonClick, className, onCloseButtonClick}: ModalProps) => {
+    const showCloseButton = onCloseButtonClick ? true : false;
+    const showOkButton = onOkButtonClick ? true : false;
     return (
         <div className={`modal-foreground ${className}`}>
             {showCloseButton && (
@@ -62,7 +52,6 @@ class Modal extends React.Component {
     }
 
     componentDidMount() {
-        // const newParent = React.createElement("div", {className: "modal-parent"});
         const newParent = document.createElement("div");
         newParent.classList.add("modal-container");
         this.setState({parent: newParent});
