@@ -17,7 +17,7 @@ const Topics = () => {
     const [editTopic, setEditTopic] = useState<Topic | null>(null);
     const navigate = useNavigate();
 
-    const fetchTopics = () => {
+    const fetchTopics = useCallback(() => {
         API.getTopics().then((response) => {
             if ("isError" in response) {
                 if (response.code === 401) {
@@ -29,7 +29,7 @@ const Topics = () => {
                 setTopics(response);
             }
         });
-    };
+    }, [navigate]);
 
     const onEditTopicComplete = useCallback(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,7 +37,7 @@ const Topics = () => {
             setEditTopic(null);
             fetchTopics();
         },
-        [setEditTopic, setTopics, setNetworkError]
+        [fetchTopics]
     );
 
     useEffect(() => {
@@ -47,7 +47,7 @@ const Topics = () => {
             return;
         }
         fetchTopics();
-    }, []);
+    }, [currentUserInfo, fetchTopics, navigate]);
 
     return (
         <main className="topics-page">

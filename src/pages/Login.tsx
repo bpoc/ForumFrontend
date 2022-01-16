@@ -37,7 +37,7 @@ const Login = () => {
                 navigate("/topics");
             }
         },
-        [email, password, setNetworkError]
+        [email, navigate, password, setCurrentUserInfo]
     );
 
     const loginDisabled = useMemo(() => {

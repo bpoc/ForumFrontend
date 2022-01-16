@@ -18,28 +18,26 @@ const Threads = () => {
     const [currentUserInfo] = useContext(UserProvider);
     const navigate = useNavigate();
 
-    const getTopic = async () => {
-        const response = await API.getTopic(parseInt(topicId ?? "-1"));
-        if ("isError" in response) {
-            if (response.code === 404) {
-                navigate("/404");
+    const getTopic = useCallback(() => {
+        API.getTopic(parseInt(topicId ?? "-1")).then((response) => {
+            if ("isError" in response) {
+                if (response.code === 404) {
+                    navigate("/404");
+                    return;
+                }
+                setNetworkError(response);
                 return;
             }
-            setNetworkError(response);
-            return;
-        }
-        setTopic(response);
-    };
+            setTopic(response);
+        });
+    }, [navigate, topicId]);
 
-    const onThreadComplete = useCallback(
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        (thread: Thread) => {
-            getTopic();
-            setShowCreateThread(false);
-            setShowEditThread(null);
-        },
-        [setNetworkError, setTopic, setShowCreateThread]
-    );
+    const onThreadComplete = useCallback(() => {
+        //eslint-disable-next-line
+        getTopic();
+        setShowCreateThread(false);
+        setShowEditThread(null);
+    }, [getTopic]);
 
     useEffect(() => {
         if (!topicId) {
@@ -47,7 +45,7 @@ const Threads = () => {
             return;
         }
         getTopic();
-    }, [setNetworkError, setTopic]);
+    }, [getTopic, navigate, topicId]);
 
     if (!topic) return null;
     return (

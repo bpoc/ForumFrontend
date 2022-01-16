@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Post, Thread} from "../models/Models";
 import {Link, useParams} from "react-router-dom";
 import API, {APIError} from "../api/API";
@@ -17,7 +17,7 @@ const Posts = () => {
     const [editPost, setEditPost] = useState<Post | null>(null);
     const {threadId} = useParams();
 
-    const getThread = () => {
+    const getThread = useCallback(() => {
         API.getThread(parseInt(threadId ?? "-1")).then((response) => {
             if ("isError" in response) {
                 setNetworkError(response);
@@ -25,11 +25,11 @@ const Posts = () => {
             }
             setThread(response);
         });
-    };
+    }, [threadId]);
 
     useEffect(() => {
         getThread();
-    }, []);
+    }, [getThread]);
 
     const onPostComplete = () => {
         setShowCreatePostModal(false);

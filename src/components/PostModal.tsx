@@ -18,13 +18,20 @@ const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: Pos
     const [textError, setTextError] = useState("");
     const [networkError, setNetworkError] = useState<APIError | null>(null);
 
+    const isDisabled = useMemo(() => {
+        if (text.length < 5) {
+            return true;
+        }
+        return false;
+    }, [text]);
+
     const onTextBlur = useCallback(() => {
         if (isDisabled) {
             setTextError("Must be at least 4 characters");
         } else {
             setTextError("");
         }
-    }, [text, setTextError]);
+    }, [isDisabled]);
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -40,13 +47,6 @@ const PostModal = ({onCloseButtonClick, onPostComplete, editPost, threadId}: Pos
         }
         onPostComplete(response);
     };
-
-    const isDisabled = useMemo(() => {
-        if (text.length < 4) {
-            return true;
-        }
-        return false;
-    }, [text]);
 
     return (
         <Modal

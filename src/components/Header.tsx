@@ -33,7 +33,7 @@ const Header = () => {
             setIsMobileNavOpen(false);
             setIsMobileNavClosing(false);
         }, 600);
-    }, [isMobileNavOpen, setIsMobileNavOpen, setIsMobileNavClosing]);
+    }, [setIsMobileNavOpen, setIsMobileNavClosing]);
 
     const openMobileNav = useCallback(() => {
         setIsMobileNavOpening(true);
