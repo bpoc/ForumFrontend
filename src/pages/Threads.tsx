@@ -8,6 +8,7 @@ import "../styles/threads.scss";
 import {UserProvider} from "../contexts/UserProvider";
 import ThreadModal from "../components/ThreadModal";
 import NetworkErrorModal from "../components/NetworkErrorModal";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Threads = () => {
     const [topic, setTopic] = useState<Topic | null>(null);
@@ -50,15 +51,12 @@ const Threads = () => {
     if (!topic) return null;
     return (
         <main className="threads-page">
-            <div className="breadcrumbs">
-                <Link to="/" className="dark">
-                    Home
-                </Link>
-                &nbsp;&gt;&nbsp;
-                <Link to="/topics" className="dark">
-                    Topics
-                </Link>
-            </div>
+            <Breadcrumbs
+                links={[
+                    {name: "Home", path: "/"},
+                    {name: "Topics", path: "/topics"},
+                ]}
+            />
             <h1>{topic.name} threads</h1>
             <ul className="threads-container">
                 {topic.threads?.map((thread) => {

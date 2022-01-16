@@ -8,16 +8,35 @@ import {getCurrentUserInfoFromLocalStorage} from "./api/API";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faLaptopCode, faBars, faTimesCircle, faStar, faEdit, faPlusSquare} from "@fortawesome/free-solid-svg-icons";
-import {faFacebook, faTwitter, faInstagram} from "@fortawesome/free-brands-svg-icons";
 import Footer from "./components/Footer";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Topics from "./pages/Topics";
 import Threads from "./pages/Threads";
 import Posts from "./pages/Posts";
+import {
+    faLaptopCode,
+    faBars,
+    faTimesCircle,
+    faStar,
+    faEdit,
+    faPlusSquare,
+    faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
+import {faFacebook, faTwitter, faInstagram} from "@fortawesome/free-brands-svg-icons";
 
-library.add(faLaptopCode, faFacebook, faTwitter, faInstagram, faBars, faTimesCircle, faStar, faEdit, faPlusSquare);
+library.add(
+    faLaptopCode,
+    faFacebook,
+    faTwitter,
+    faInstagram,
+    faBars,
+    faTimesCircle,
+    faStar,
+    faEdit,
+    faPlusSquare,
+    faAngleRight
+);
 
 function App() {
     const [currentUserInformation, setCurrentUserInformation] = useState<CurrentUserInfo | null>(

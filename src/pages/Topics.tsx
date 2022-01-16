@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import TopicModal from "../components/TopicModal";
 import "../styles/topics.scss";
 import NetworkErrorModal from "../components/NetworkErrorModal";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Topics = () => {
     const [currentUserInfo] = useContext(UserProvider);
@@ -51,6 +52,7 @@ const Topics = () => {
 
     return (
         <main className="topics-page">
+            <Breadcrumbs links={[{name: "Home", path: "/"}]} />
             <h1>Forum Topics</h1>
             <ul className="topics-list">
                 {topics.map((topic) => {

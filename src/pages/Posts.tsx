@@ -8,6 +8,7 @@ import {DateTime} from "luxon";
 import {UserProvider} from "../contexts/UserProvider";
 import PostModal from "../components/PostModal";
 import NetworkErrorModal from "../components/NetworkErrorModal";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Posts = () => {
     const [thread, setThread] = useState<Thread | null>(null);
@@ -39,21 +40,13 @@ const Posts = () => {
 
     return (
         <main className="posts-page">
-            <div className="breadcrumbs">
-                <Link to="/" className="dark">
-                    Home
-                </Link>
-                &nbsp;&gt;&nbsp;
-                <Link to="/topics" className="dark">
-                    Topics
-                </Link>
-                &nbsp;&gt;&nbsp;
-                {thread?.topic && (
-                    <Link className="dark" to={`/topics/${thread.topic?.id}`}>
-                        {thread.topic.name}
-                    </Link>
-                )}
-            </div>
+            <Breadcrumbs
+                links={[
+                    {name: "Home", path: "/"},
+                    {name: "Topics", path: "/topics"},
+                    {name: thread?.topic?.name ?? "", path: `/topics/${thread?.topic?.id}`},
+                ]}
+            />
             <h1>{thread?.name}</h1>
             <ul className="posts-container">
                 {thread?.posts?.map((post) => {
