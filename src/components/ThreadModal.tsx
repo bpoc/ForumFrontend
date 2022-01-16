@@ -8,7 +8,7 @@ import NetworkErrorModal from "./NetworkErrorModal";
 
 export type ThreadModalProps = {
     onCloseButtonClick: () => void;
-    onThreadComplete: (thread: Thread) => void;
+    onThreadComplete: ((thread: Thread) => void) | (() => void);
     topicId: number;
     editThread?: Thread;
 };
