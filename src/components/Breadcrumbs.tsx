@@ -10,20 +10,20 @@ export type BreadcrumbsProps = {
 const Breadcrumbs = ({links}: BreadcrumbsProps) => {
     return (
         <div className="breadcrumbs">
-            {links.map((link, index) => {
+            {links.map(({path, name}, index) => {
                 if (index !== 0) {
                     return (
-                        <>
-                            <FontAwesomeIcon icon={["fas", "angle-right"]} />
-                            <Link to={link.path} className="dark">
-                                {link.name}
+                        <span key={name}>
+                            <FontAwesomeIcon aria-hidden={true} icon={["fas", "angle-right"]} />
+                            <Link to={path} className="dark">
+                                {name}
                             </Link>
-                        </>
+                        </span>
                     );
                 }
                 return (
-                    <Link to={link.path} className="dark">
-                        {link.name}
+                    <Link key={name} to={path} className="dark">
+                        {name}
                     </Link>
                 );
             })}
